@@ -1,0 +1,25 @@
+﻿<Window x:Class="SchedulerBindLimitIntervalWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduler"
+        xmlns:local="clr-namespace:SchedulerBindLimitIntervalWpf"
+        Title="MainWindow" Height="350" Width="525">
+    
+    <Window.Resources>
+        <local:IntervalConverter x:Key="intervalConverter" />
+    </Window.Resources>
+    
+    <Grid>
+        <dxsch:SchedulerControl Name="schedulerControl1" Margin="0,50,0,0">
+            <dxsch:SchedulerControl.LimitInterval>
+                <MultiBinding Converter="{StaticResource intervalConverter}">
+                    <Binding ElementName="datePicker1" Path="SelectedDate" />
+                    <Binding ElementName="datePicker2" Path="SelectedDate" />
+                </MultiBinding>
+            </dxsch:SchedulerControl.LimitInterval>
+            
+        </dxsch:SchedulerControl>
+        <DatePicker Margin="0,10,300,0" Name="datePicker1" VerticalAlignment="Top" Width="100" SelectedDate="4/25/2011" />
+        <DatePicker Margin="300,10,0,0" Name="datePicker2" VerticalAlignment="Top" Width="100" SelectedDate="4/28/2011" />
+    </Grid>
+</Window>
